@@ -1,0 +1,53 @@
+services:
+  wordpress:
+    image: wordpress:latest
+    container_name: betheme_wordpress
+    restart: always
+    ports:
+      - "9010:80"
+    environment:
+      WORDPRESS_DB_HOST: betheme_mysql:3306
+      WORDPRESS_DB_USER: betheme_user
+      WORDPRESS_DB_PASSWORD: betheme_password
+      WORDPRESS_DB_NAME: betheme_db
+    volumes:
+      - ./betheme-wordpress:/var/www/html
+    networks:
+      - betheme_network
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    container_name: betheme_mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: betheme_db
+      MYSQL_USER: betheme_user
+      MYSQL_PASSWORD: betheme_password
+      MYSQL_ROOT_PASSWORD: root_password
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - betheme_network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: betheme_phpmyadmin
+    restart: always
+    ports:
+      - "9011:80"
+    environment:
+      PMA_HOST: betheme_mysql
+      MYSQL_ROOT_PASSWORD: root_password
+    networks:
+      - betheme_network
+    depends_on:
+      - mysql
+
+volumes:
+  db_data:
+
+networks:
+  betheme_network:
+    driver: bridge
