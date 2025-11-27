@@ -33,7 +33,7 @@
 
       // append mobile toggle button
 
-      $('li:has(ul)', menu).append('<a class="menu-toggle" href="#" role="menuitem" aria-label="'+ mfn.accessibility.translation.toggleSubmenu +'"></a>').on('click', '.menu-toggle', function(e){
+      $('li:has(ul)', menu).append('<a class="menu-toggle" href="#" aria-label="'+ mfn.accessibility.translation.toggleSubmenu +'"></a>').on('click', '.menu-toggle', function(e){
 
         e.preventDefault();
 

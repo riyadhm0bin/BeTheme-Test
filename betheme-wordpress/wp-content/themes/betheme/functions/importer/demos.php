@@ -469,6 +469,50 @@ $demos = [
 
   // pre-built
 
+  'medic4' => [
+    'name' => 'Medic 4',
+    'layouts' => ['ele','mfn'],
+    'categories' => ['cor','edu','hea','peo'],
+    'plugins' => ['cf7','ele'],
+    'wrapper' => '1200',
+    'theme_version' => '28',
+    'elementor' => [
+      'flexbox' => true,
+    ],
+  ],
+  'finance5' => [
+    'name' => 'Finance 5',
+    'layouts' => ['ele','mfn'],
+    'categories' => ['cor','fin','pro'],
+    'plugins' => ['ele'],
+    'wrapper' => '1920',
+    'theme_version' => '28',
+    'elementor' => [
+      'flexbox' => true,
+    ],
+  ],
+  'cosmetics4' => [
+    'name' => 'Cosmetics 4',
+    'layouts' => ['sho','blo','lig','ele','mfn'],
+    'categories' => ['cor','hea','pro'],
+    'plugins' => ['cf7','ele','woo'],
+    'wrapper' => '1200',
+    'theme_version' => '28',
+    'elementor' => [
+      'flexbox' => true,
+    ],
+  ],
+  'dj3' => [
+    'name' => 'DJ 3',
+    'layouts' => ['one','ele','mfn'],
+    'categories' => ['art','ent'],
+    'plugins' => ['cf7','ele'],
+    'wrapper' => '1200',
+    'theme_version' => '28',
+    'elementor' => [
+      'flexbox' => true,
+    ],
+  ],
   'beauty5' => [
     'name' => 'Beauty 5',
     'layouts' => ['sho','lig','ele','mfn'],
@@ -1546,7 +1590,7 @@ $demos = [
 		'name' => 'Finance 4',
 		'layouts' => ['ele','mfn'],
 		'categories' => ['cor','fin','pro'],
-		'plugins' => ['cf7','rev','ele'],
+		'plugins' => ['cf7','ele'],
 		'wrapper' => '1130',
 	],
 	'party4' => [
@@ -2216,7 +2260,7 @@ $demos = [
 		'name' => 'Security 3',
 		'layouts' => ['dar','ele','mfn'],
 		'categories' => ['cor','peo'],
-		'plugins' => ['cf7','rev','ele'],
+		'plugins' => ['cf7','ele'],
 		'wrapper' => '1120',
 	],
 	'club3' => [
@@ -3560,8 +3604,7 @@ $demos = [
 		'name' => 'Web Developer',
 		'layouts' => ['por'],
 		'categories' => ['tec','peo'],
-		'plugins' => ['cf7','rev',
-		],
+		'plugins' => ['cf7'],
 	],
 	'lawyer3' => [
 		'name' => 'Lawyer 3',
@@ -4168,8 +4211,7 @@ $demos = [
 		'name' => 'HiFi',
 		'layouts' => ['sho'],
 		'categories' => ['tec','pro'],
-		'plugins' => ['cf7','woo',
-		],
+		'plugins' => ['cf7','woo'],
 	],
 	'ebook' => [
 		'name' => 'eBook',

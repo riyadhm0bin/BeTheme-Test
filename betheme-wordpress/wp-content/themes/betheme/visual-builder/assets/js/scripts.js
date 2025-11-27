@@ -5467,8 +5467,21 @@ $editpanel.on('change', '.mfn-form-row .browse-icon .mfn-field-value, .mfn-form-
             }
         }else if($content.find('.'+it).hasClass('column_icon_box_2')){
             // icon box 2
+            if($content.find('.'+it+' .icon-wrapper img').length) return;
+
             if($content.find('.'+it+' .icon-wrapper').length){
-                $content.find('.'+it+' .icon-wrapper').html('<i class="'+icon+'" aria-hidden="true"></i>');
+
+                if( $editrow.hasClass('icon') && $content.find('.'+it+' .icon-wrapper .primary').length ){
+                    $content.find('.'+it+' .icon-wrapper .primary').attr('class', icon+' primary');
+                }else if( $editrow.hasClass('icon_hover') ){
+                    if( $content.find('.'+it+' .icon-wrapper .secondary').length ){
+                        $content.find('.'+it+' .icon-wrapper .secondary').attr('class', icon+' secondary');
+                    }else{
+                        $content.find('.'+it+' .icon-wrapper').append('<i class="'+icon+' secondary" aria-hidden="true"></i>');
+                    }
+                    
+                }
+                
             }else{
                 $content.find('.'+it+' .desc-wrapper').before('<div class="icon-wrapper"><i class="'+icon+'" aria-hidden="true"></i></div>');
             }
@@ -5566,13 +5579,13 @@ $editpanel.on('change', '.mfn-form-row .browse-icon .mfn-field-value, .mfn-form-
         }else if($content.find('.'+it).hasClass('column_icon_2')){
             // icon
             $content.find('.'+it+' .mfn-icon-2 i').attr('class', `icon-lamp`);
-        }else if($content.find('.'+it).hasClass('column_icon_box')){
+        }else if($content.find('.'+it).hasClass('column_icon_box_2')){
             // icon box
             $content.find('.'+it+' .icon_wrapper').remove();
             if( $('.mfn-ui .panel-edit-item .mfn-form .mfn-form-control.preview-imageinput').val().length ){
                 $content.find('.'+it+' .icon_box').prepend(' <div class="image_wrapper"><img src=" '+ $('.mfn-ui .panel-edit-item .mfn-form .mfn-form-control.preview-imageinput').val() +' " class="scale-with-grid" alt=""></div> ');
             }else{
-                 $content.find('.'+it+' .icon_wrapper .icon i').attr('class', sample_icon);
+                 $content.find('.'+it+' .icon_wrapper .icon i').attr('class', sample_icon+' primary');
                  //$('.panel-edit-item .mfn-form-row.icon .preview-iconinput').val(sample_icon);
             }
         }else if($content.find('.'+it).hasClass('column_list')){
@@ -11470,21 +11483,50 @@ function imageForWidget(u, v, p){
     }else if($content.find('.'+u).hasClass('column_footer_logo')){
         // logo
         $content.find('.'+u+' img').attr('src', v);
-    }else if($content.find('.'+u).hasClass('column_icon_box_2')){
+    }else if($content.find('.'+u).hasClass('column_icon_box_2')) {
 
-        if( v ){
-            if( $content.find('.'+u+' .icon-wrapper').length ){
+        if( v ) {
+
+            if( $('.panel-edit-item .mfn-form .image .mfn-field-value').val().length ) {
+
+                if( $content.find('.'+u+' .icon-wrapper img.primary').length ) {
+                    $content.find('.'+u+' .icon-wrapper img.primary').replaceWith('<img src="'+$('.panel-edit-item .mfn-form .image .mfn-field-value').val()+'" alt="" class="primary">');
+                }else{
+                    $content.find('.'+u+' .icon-wrapper').html('<img src="'+$('.panel-edit-item .mfn-form .image .mfn-field-value').val()+'" alt="" class="primary">');
+                }
+
+            }
+
+            if( $('.panel-edit-item .mfn-form .image_hover .mfn-field-value').val().length ) {
+                if( $content.find('.'+u+' .icon-wrapper img.secondary').length ) {
+                    $content.find('.'+u+' .icon-wrapper img.secondary').replaceWith('<img src="'+$('.panel-edit-item .mfn-form .image_hover .mfn-field-value').val()+'" alt="" class="secondary">');
+                }else{
+                    $content.find('.'+u+' .icon-wrapper').append('<img src="'+$('.panel-edit-item .mfn-form .image_hover .mfn-field-value').val()+'" alt="" class="secondary">');
+                }
+            }
+
+            /*if( $content.find('.'+u+' .icon-wrapper').length ) {
                 $content.find('.'+u+' .icon-wrapper').html('<img class="scale-with-grid" src="'+v+'" alt="">');
             }else{
                 $content.find('.'+u+' .mfn-icon-box').prepend('<div class="icon-wrapper"><img class="scale-with-grid" src="'+v+'" alt=""></div>');
-            }
+            }*/
+
         }else{
-            if( $editpanel.find('.panel-edit-item .mfn-form .icon_box_2.icon .preview-iconinput').val().length ){
-                if( $content.find('.'+u+' .icon-wrapper i').length ){
-                    $content.find('.'+u+' .icon-wrapper i').attr('class', $editpanel.find('.panel-edit-item .mfn-form .icon_box_2.icon .preview-iconinput').val());
+            if( $editpanel.find('.panel-edit-item .mfn-form .icon_box_2.icon .mfn-field-value').val().length ){
+                if( $content.find('.'+u+' .icon-wrapper i.primary').length ){
+                    $content.find('.'+u+' .icon-wrapper i.primary').attr('class', $editpanel.find('.panel-edit-item .mfn-form .icon_box_2.icon .mfn-field-value').val()+' primary');
                 }else{
-                    $content.find('.'+u+' .icon-wrapper').html('<i class="'+$editpanel.find('.panel-edit-item .mfn-form .icon_box_2.icon .preview-iconinput').val()+'" aria-hidden="true"></i>');
+                    $content.find('.'+u+' .icon-wrapper').html('<i class="'+$editpanel.find('.panel-edit-item .mfn-form .icon_box_2.icon .mfn-field-value').val()+' primary" aria-hidden="true"></i>');
                 }
+
+                if( $editpanel.find('.panel-edit-item .mfn-form .icon_box_2.icon_hover .mfn-field-value').val().length ){
+                    if( $content.find('.'+u+' .icon-wrapper i.secondary').length ){
+                        $content.find('.'+u+' .icon-wrapper i.secondary').attr('class', $editpanel.find('.panel-edit-item .mfn-form .icon_box_2.icon_hover .mfn-field-value').val()+' secondary');
+                    }else{
+                        $content.find('.'+u+' .icon-wrapper').append('<i class="'+$editpanel.find('.panel-edit-item .mfn-form .icon_box_2.icon_hover .mfn-field-value').val()+' secondary" aria-hidden="true"></i>');
+                    }
+                }
+
             }else if( $editpanel.find('.panel-edit-item .mfn-form .icon_box_2.label .mfn-field-value').val().length ){
                 if( $content.find('.'+u+' .icon-wrapper').length ){
                     $content.find('.'+u+' .icon-wrapper').html('<span class="icon-label">'+$editpanel.find('.panel-edit-item .mfn-form .icon_box_2.label .mfn-field-value').val()+'</span>');

@@ -165,6 +165,7 @@ $translate['item-all'] = mfn_opts_get('translate') ? mfn_opts_get('translate-ite
 
 								<div class="filters_wrapper">
 
+									<?php if( '1' === $filters || 'only-categories' === $filters ): ?>
 									<ul class="categories">
 										<?php
 
@@ -198,7 +199,9 @@ $translate['item-all'] = mfn_opts_get('translate') ? mfn_opts_get('translate-ite
 										?>
 										<li class="close"><a href="#"><i class="icon-cancel" aria-label="Close icon"></i></a></li>
 									</ul>
+									<?php endif; ?>
 
+									<?php if( '1' === $filters || 'only-tags' === $filters ): ?>
 									<ul class="tags">
 										<?php
 
@@ -221,7 +224,9 @@ $translate['item-all'] = mfn_opts_get('translate') ? mfn_opts_get('translate-ite
 										?>
 										<li class="close"><a href="#"><i class="icon-cancel" aria-label="Close icon"></i></a></li>
 									</ul>
+									<?php endif; ?>
 
+									<?php if( '1' === $filters || 'only-authors' === $filters ): ?>
 									<ul class="authors">
 										<?php
 
@@ -245,6 +250,8 @@ $translate['item-all'] = mfn_opts_get('translate') ? mfn_opts_get('translate-ite
 										?>
 										<li class="close"><a href="#"><i class="icon-cancel" aria-label="Close icon"></i></a></li>
 									</ul>
+									<?php endif; ?>
+									
 								</div>
 
 							</div>

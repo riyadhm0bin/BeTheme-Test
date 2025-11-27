@@ -1181,6 +1181,12 @@ body.folded .mfn-ui .mfn-register-now{left:36px;width:calc(100% - 36px)}
 .mfn-ui .mfn-form .has-icon-left .mfn-form-control { padding-left: 40px; }
 .mfn-ui .mfn-form .has-icon-right .mfn-form-control { padding-right: 40px; }
 
+.mfn-ui .mfn-form .gradient-form{display: grid;gap: 10px 20px;grid-template-columns: repeat(2, 1fr);}
+.mfn-ui .mfn-form .gradient-form .form-group{min-width:unset}
+@media only screen and (max-width: 1139px){
+  .mfn-ui .mfn-form .gradient-form{grid-template-columns: repeat(1, 1fr);}
+}
+
 .mfn-ui .mfn-form .multiple-inputs .form-control { flex: inherit; display: flex; width: auto; }
 .mfn-ui .mfn-form .multiple-inputs .field { float: left; position: relative; margin-right: -1px; }
 .mfn-ui .mfn-form .multiple-inputs .field:after { content: attr(data-key); display: block; text-align: center; font-size: 11px; text-transform: uppercase }
@@ -1501,6 +1507,8 @@ body.folded .mfn-ui .mfn-register-now{left:36px;width:calc(100% - 36px)}
   --mfn-button-icon-color-hover: #626262;
   --mfn-button-background: #dbdddf;
   --mfn-button-background-hover: #d3d3d3;
+  --mfn-button-gradient: unset;
+  --mfn-button-gradient-hover: unset;
   --mfn-button-border-color: transparent;
   --mfn-button-border-color-hover: transparent;
   --mfn-button-box-shadow: unset;
@@ -1511,6 +1519,8 @@ body.folded .mfn-ui .mfn-register-now{left:36px;width:calc(100% - 36px)}
   --mfn-button-highlighted-icon-color-hover: #fff;
   --mfn-button-highlighted-background: #0095eb;
   --mfn-button-highlighted-background-hover: #007cc3;
+  --mfn-button-highlighted-gradient: unset;
+  --mfn-button-highlighted-gradient-hover: unset;
   --mfn-button-highlighted-border-color: transparent;
   --mfn-button-highlighted-border-color-hover: transparent;
   --mfn-button-highlighted-box-shadow: unset;
@@ -1519,6 +1529,8 @@ body.folded .mfn-ui .mfn-register-now{left:36px;width:calc(100% - 36px)}
   --mfn-button-shop-color-hover: #fff;
   --mfn-button-shop-background: #161922;
   --mfn-button-shop-background-hover: #030304;
+  --mfn-button-shop-gradient: unset;
+  --mfn-button-shop-gradient-hover: unset;
   --mfn-button-shop-border-color: transparent;
   --mfn-button-shop-border-color-hover: transparent;
   --mfn-button-shop-box-shadow: unset;
@@ -1527,6 +1539,8 @@ body.folded .mfn-ui .mfn-register-now{left:36px;width:calc(100% - 36px)}
   --mfn-button-action-color-hover: #626262;
   --mfn-button-action-background: #dbdddf;
   --mfn-button-action-background-hover: #d3d3d3;
+  --mfn-button-action-gradient: unset;
+  --mfn-button-action-gradient-hover: unset;
   --mfn-button-action-border-color: transparent;
   --mfn-button-action-border-color-hover: transparent;
   --mfn-button-action-box-shadow: unset;
@@ -1625,12 +1639,14 @@ body.folded .mfn-ui .mfn-register-now{left:36px;width:calc(100% - 36px)}
 
 .mfn-ui .button-preview {
   background-color: var(--mfn-button-background);
+  background-image: var(--mfn-button-gradient);
   border-color: var(--mfn-button-border-color);
   color: var(--mfn-button-color);
   box-shadow: var(--mfn-button-box-shadow);
 }
 .mfn-ui .button-preview:hover {
   background-color: var(--mfn-button-background-hover);
+  background-image: var(--mfn-button-gradient-hover);
   border-color: var(--mfn-button-border-color-hover);
   color: var(--mfn-button-color-hover);
 }
@@ -1642,18 +1658,22 @@ body.folded .mfn-ui .mfn-register-now{left:36px;width:calc(100% - 36px)}
 }
 .mfn-ui[data-animation^="slide"] .button-preview:hover {
   background-color: var(--mfn-button-background);
+  background-image: var(--mfn-button-gradient);
 }
 .mfn-ui[data-animation^="slide"] .button-preview:before {
   background-color: var(--mfn-button-background-hover);
+  background-image: var(--mfn-button-gradient-hover);
 }
 .mfn-ui .button-preview.highlighted {
   background-color: var(--mfn-button-highlighted-background);
+  background-image: var(--mfn-button-highlighted-gradient);
   border-color: var(--mfn-button-highlighted-border-color);
   color: var(--mfn-button-highlighted-color);
   box-shadow: var(--mfn-button-highlighted-box-shadow);
 }
 .mfn-ui .button-preview.highlighted:hover {
   background-color: var(--mfn-button-highlighted-background-hover);
+  background-image: var(--mfn-button-highlighted-gradient-hover);
   border-color: var(--mfn-button-highlighted-border-color-hover);
   color: var(--mfn-button-highlighted-color-hover);
 }
@@ -1665,18 +1685,22 @@ body.folded .mfn-ui .mfn-register-now{left:36px;width:calc(100% - 36px)}
 }
 .mfn-ui[data-animation^="slide"] .button-preview.highlighted:hover {
   background-color: var(--mfn-button-highlighted-background);
+  background-image: var(--mfn-button-highlighted-gradient);
 }
 .mfn-ui[data-animation^="slide"] .button-preview.highlighted:before {
   background-color: var(--mfn-button-highlighted-background-hover);
+  background-image: var(--mfn-button-highlighted-gradient-hover);
 }
 .mfn-ui .button-preview.shop {
   background-color: var(--mfn-button-shop-background);
+  background-image: var(--mfn-button-shop-gradient);
   border-color: var(--mfn-button-shop-border-color);
   color: var(--mfn-button-shop-color);
   box-shadow: var(--mfn-button-shop-box-shadow);
 }
 .mfn-ui .button-preview.shop:hover {
   background-color: var(--mfn-button-shop-background-hover);
+  background-image: var(--mfn-button-shop-gradient-hover);
   border-color: var(--mfn-button-shop-border-color-hover);
   color: var(--mfn-button-shop-color-hover);
 }
@@ -1688,20 +1712,24 @@ body.folded .mfn-ui .mfn-register-now{left:36px;width:calc(100% - 36px)}
 }
 .mfn-ui .button-preview.action {
   background-color: var(--mfn-button-action-background);
+  background-image: var(--mfn-button-action-gradient);
   border-color: var(--mfn-button-action-border-color);
   color: var(--mfn-button-action-color);
   box-shadow: var(--mfn-button-action-box-shadow);
 }
 .mfn-ui .button-preview.action:hover {
   background-color: var(--mfn-button-action-background-hover);
+  background-image: var(--mfn-button-action-gradient-hover);
   border-color: var(--mfn-button-action-border-color-hover);
   color: var(--mfn-button-action-color-hover);
 }
 .mfn-ui[data-animation^="slide"] .button-preview.action:hover {
   background-color: var(--mfn-button-action-background);
+  background-image: var(--mfn-button-action-gradient);
 }
 .mfn-ui[data-animation^="slide"] .button-preview.action:before {
   background-color: var(--mfn-button-action-background-hover);
+  background-image: var(--mfn-button-action-gradient-hover);
 }
 
 /* end: Button preview */
@@ -4168,9 +4196,9 @@ div.mfn-wp-form-multifields.active, tr.mfn-wp-form-multifields.active th{border-
 
 
 /**
- * 
+ *
  * Select ajax
- * 
+ *
  * */
 
 .mfn-select-ajax{ position: relative; display: block; width: 100%;}

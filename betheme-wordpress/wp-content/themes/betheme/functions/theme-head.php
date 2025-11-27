@@ -711,8 +711,6 @@ if (! function_exists('mfn_styles_inline')) {
 			wp_add_inline_style( 'mfn-dynamic', mfn_styles_dynamic() );
 		}
 
-		wp_add_inline_style( 'mfn-be-classes', mfn_styles_be_classes() );
-
 		// html inline styles
 		wp_add_inline_style( 'mfn-dynamic', mfn_styles_html() );
 
@@ -803,20 +801,6 @@ function mfn_styles_header(){
 	}
 
 	return false;
-}
-
-/**
- * Styles | Be Classes
- */
-
-function mfn_styles_be_classes() {
-
-	$styles = !empty( get_option('be_classes') ) ? json_decode( get_option('be_classes') ) : false;
-
-	if( !$styles ) return;
-
-
-
 }
 
 /**
@@ -1398,10 +1382,12 @@ if (! function_exists('mfn_scripts')) {
 
 		wp_enqueue_script('mfn-enllax', get_theme_file_uri('/js/plugins/enllax.min.js'), array('jquery'), MFN_THEME_VERSION, true);
 
-		if ( 'translate3d' == $parallax ) {
-			wp_enqueue_script('mfn-parallax', get_theme_file_uri('/js/parallax/translate3d'. $min .'.js'), array('jquery'), MFN_THEME_VERSION, true);
-		} elseif ( 'stellar' == $parallax ) {
-			wp_enqueue_script('mfn-stellar', get_theme_file_uri('/js/parallax/stellar.min.js'), array('jquery'), MFN_THEME_VERSION, true);
+		if ( ! isset( $performance_assets_disable[ 'parallax' ] ) ) {
+			if ( 'translate3d' == $parallax ) {
+				wp_enqueue_script('mfn-parallax', get_theme_file_uri('/js/parallax/translate3d'. $min .'.js'), array('jquery'), MFN_THEME_VERSION, true);
+			} elseif ( 'stellar' == $parallax ) {
+				wp_enqueue_script('mfn-stellar', get_theme_file_uri('/js/parallax/stellar.min.js'), array('jquery'), MFN_THEME_VERSION, true);
+			}
 		}
 
 		if( mfn_opts_get('header-search-live') ) {

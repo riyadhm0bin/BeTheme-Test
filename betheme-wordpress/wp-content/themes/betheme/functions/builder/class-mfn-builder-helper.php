@@ -166,21 +166,17 @@ class Mfn_Builder_Helper {
 
 		global $wpdb;
 
-		$items = $wpdb->get_results( "SELECT `ID` FROM {$wpdb->prefix}posts WHERE post_status = 'publish' and post_type not like 'attachment'" );
+		$fonts = array();
+
+		$items = $wpdb->get_results( "SELECT `meta_value` FROM {$wpdb->prefix}postmeta WHERE meta_key = 'mfn-page-fonts'" );
 
 		if(count($items) > 0) {
 			foreach($items as $item) {
+				if( empty($item->meta_value) ) continue;
 
-				$remove_signs = function($value) {
-					$value = preg_replace("/[^A-Za-z0-9 ]/", '', $value);
-					return $value;
-				};
+				$decode_item = json_decode($item->meta_value);
 
-				if ( $response = get_post_meta($item->ID, 'mfn-page-fonts', true) ){
-					$response = explode(',', $response); // post meta returns it as a string
-					$fonts = array_merge($fonts, array_map($remove_signs, $response));
-				}
-
+				$fonts = array_merge($fonts, $decode_item);
 			}
 		}
 

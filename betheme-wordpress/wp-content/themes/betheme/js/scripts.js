@@ -2841,6 +2841,12 @@ function redrawAllRevolutionSliders() {
 
     });
 
+    $(document).on('keydown', function(e){
+      if (e.key === 'Escape' && $('.search_wrapper').is(':visible')) {
+        $('.search_wrapper .icon_close').trigger('click');
+      }
+    });
+
     /**
      * WPML | Language switcher in the WP Menu
      */
@@ -3093,11 +3099,11 @@ function redrawAllRevolutionSliders() {
 
       var el = $(this);
       var pager = el.closest('.pager_lm');
+
       var href = el.attr('href');
 
       // index | for many items on the page
-      //var index = $('.lm_wrapper').index(el.closest('.isotope_wrapper').find('.lm_wrapper'));
-      var index = $('.lm_wrapper').index( el.closest('.mcb-column-inner').find('.lm_wrapper') );
+      var index = $('.content_wrapper .lm_wrapper').index( el.closest('.mcb-column-inner').find('.lm_wrapper') );
 
       el.fadeOut(50);
       pager.addClass('loading');
@@ -3106,14 +3112,25 @@ function redrawAllRevolutionSliders() {
 
         // content
 
-        var content = $('.lm_wrapper', data).html();
-        var $content = $(content);
+        // var content = $('.content_wrapper .lm_wrapper', data).html();
+        // var $content = $(content);
 
-        href = $('.lm_wrapper:eq(' + index + ')', data).next().find('.pager_load_more').attr('href');
+		    var content = $('.content_wrapper .lm_wrapper', data).eq(index).html();
+        var $content;
 
-        if ($('.lm_wrapper:eq(' + index + ')').hasClass('isotope')) {
+        if (content.indexOf('<') === -1) {
+          $content = $('<div>').text(content);
+        } else {
+          $content = $(content);
+        }
+
+        href = $('.content_wrapper .lm_wrapper:eq(' + index + ')', data).next().find('.pager_load_more').attr('href');
+
+        if ($('.content_wrapper .lm_wrapper:eq(' + index + ')').hasClass('isotope')) {
+
           // isotope
-          const location = '.lm_wrapper:eq(' + index + ')';
+
+          const location = '.content_wrapper .lm_wrapper:eq(' + index + ')';
           $(location).append( $content );
 
           mfnIsotope.queryIsotopeAPI(location, 'appended', $content);
@@ -3125,14 +3142,16 @@ function redrawAllRevolutionSliders() {
             });
           }
 
-        } else if ($('.lm_wrapper:eq(' + index + ')').hasClass('mfn-woo-products')) {
+        } else if ($('.content_wrapper .lm_wrapper:eq(' + index + ')').hasClass('mfn-woo-products')) {
 
-          $('.lm_wrapper:eq(' + index + ') ul.products').append( $content.html() );
-          let pager_div = $('.pager_wrapper', data).get(0);
+          // different .pager_load_more DOM location
+          if (typeof href === 'undefined'){
+            href = $('.content_wrapper .lm_wrapper:eq(' + index + ') .pager_load_more', data).attr('href');
+          }
 
-          var $listing = $('.lm_wrapper ul.products.isotope');
+          $('.content_wrapper .lm_wrapper:eq(' + index + ') ul.products').append( $content.html() );
 
-          $('.pager_wrapper .pager_load_more').attr('href', $(pager_div).find('.pager_load_more').attr('href'));
+          var $listing = $('.content_wrapper .lm_wrapper:eq(' + index + ') ul.products.isotope');
 
           if( $listing.length ){
             $listing.imagesLoaded().progress(function() {
@@ -3142,7 +3161,7 @@ function redrawAllRevolutionSliders() {
 
         } else {
           // default
-          $content.hide().appendTo('.lm_wrapper:eq(' + index + ')').fadeIn(1000);
+          $content.hide().appendTo('.content_wrapper .lm_wrapper:eq(' + index + ')').fadeIn(1000);
         }
 
         // next page link

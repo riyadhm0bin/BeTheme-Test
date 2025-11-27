@@ -185,7 +185,7 @@ if ( $has_user || $has_wishlist || $has_cart || $header_search || $action_link |
 				if ( 'header-shop' != mfn_header_style(true) ){
 
 					echo '<div class="top-bar-right-input has-input">';
-						echo '<form method="get" class="top-bar-search-form" id="searchform" action="'. esc_url(home_url('/')) .'" role="search" aria-label="'. __('header search form', 'betheme') .'">';
+						echo '<form method="get" class="top-bar-search-form form-searchform" id="searchform" action="'. esc_url(home_url('/')) .'" role="search" aria-label="'. __('header search form', 'betheme') .'">';
 
 							echo $search_icon;
 							echo '<input type="text" class="field" name="s" autocomplete="off" placeholder="'. esc_html($translate['search-placeholder']) .'" aria-label="'. esc_html($translate['search-placeholder']) .'"/>';

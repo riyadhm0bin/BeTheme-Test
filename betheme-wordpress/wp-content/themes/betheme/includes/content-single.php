@@ -391,7 +391,10 @@ $button_text = $translate['readmore'];
 
 											}
 
-											echo '<div class="date_label">'. esc_html(get_the_date()) .'</div>';
+											$list_meta = mfn_opts_get( 'blog-meta' );
+											if( isset($list_meta['date']) ){
+												echo '<div class="date_label">'. esc_html(get_the_date()) .'</div>';
+											}
 
 											echo '<div class="desc">';
 												if (get_post_format() != 'quote') {

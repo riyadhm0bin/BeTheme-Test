@@ -248,7 +248,7 @@ if( ! class_exists('Mfn_Builder_Front') )
 				if( $enqueue ) {
 
 					$url = wp_upload_dir()['baseurl'] . $path;
-					
+
 					if( is_ssl() ){
 						$url = str_replace( 'http://', 'https://', $url );
 					}
@@ -358,7 +358,7 @@ if( ! class_exists('Mfn_Builder_Front') )
 	  					if( !empty( get_post_meta($this->post_id, 'mfn-shop-list-active-filters', true) ) ) $main_div_classes[] = 'mfn-shop-list-active-filters-'.get_post_meta($this->post_id, 'mfn-shop-list-active-filters', true);
 	  					if( !empty( get_post_meta($this->post_id, 'mfn-shop-list-sorting', true) ) ) $main_div_classes[] = 'mfn-shop-list-sorting-'.get_post_meta($this->post_id, 'mfn-shop-list-sorting', true);
 	  				}
-	  				
+
 	  				echo '<div data-id="'.$this->post_id.'" class="'.implode(' ', $main_div_classes).'">';
 	  				if( $this->template_type == 'sidemenu' ) echo '<a href="#" class="mfn-sidemenu-closebutton">&#10005;</a>';
 	  			}
@@ -438,7 +438,7 @@ if( ! class_exists('Mfn_Builder_Front') )
   							$section['attr'] = array_merge($this->be_classes[$bc], $section['attr']);
   						}
   					}
-  				} 
+  				}
 
 					// unique ID
 
@@ -495,7 +495,7 @@ if( ! class_exists('Mfn_Builder_Front') )
 	  							$section['attr'] = array_merge($this->be_classes[$bc], $section['attr']);
 	  						}
 	  					}
-	  				} 
+	  				}
 
 						$global_section_id = ' data-mfn-global="' . $section['mfn_global_section_id'] .'"';
 
@@ -926,9 +926,11 @@ if( ! class_exists('Mfn_Builder_Front') )
 
 							echo '<div class="mask"></div>';
 
-							$poster = false;
+							$poster = '';
 
-							if( !empty($section['attr']['bg_image']) ) $poster = $section['attr']['bg_image'];
+							if( !empty($section['attr']['css_advanced_background_image']['val']['desktop']) ){
+								$poster = $section['attr']['css_advanced_background_image']['val']['desktop'];
+							}
 
 							if( self::$is_bebuilder ){
 
@@ -1138,7 +1140,7 @@ if( ! class_exists('Mfn_Builder_Front') )
 	            				}else{
 	            					$q_args['number'] = $section['attr']['query_slider_columns']['desktop'];
 	            				}
-	            
+
 		            			if( !self::$updated_version ){
 		            				if( empty($section['attr']['query_slider_columns']) ) $section['attr']['query_slider_columns'] = 1;
 		              			if( !empty($section['attr']['query_slider_centered']) && $section['attr']['query_slider_centered'] == '2' ){
@@ -1245,11 +1247,11 @@ if( ! class_exists('Mfn_Builder_Front') )
 											if( !self::$is_bebuilder && !empty($section['attr']['query_display']) && $section['attr']['query_display'] == 'slider' ) echo '</div>';
 											self::$item_type = false;
 											self::$item_id = false;
-											
+
 										}
 
 										self::$is_ql_section = false;
-										
+
 									else:
 										foreach ($section['wraps'] as $w => $wrap) {
 		              		$this->show_wraps($wrap, $w, $vb);
@@ -1420,7 +1422,7 @@ if( ! class_exists('Mfn_Builder_Front') )
 	              				}else{
 	              					echo '<div '.$sectionqi_inner_inline_styles.' class="mfn-queryloop-item-wrapper mfn-ql-item-default" data-post="'.(!empty(self::$item_id) ? self::$item_id : $this->post_id).'">';
               					}
-              					
+
               				}else{
               					if ( !empty( $section['attr']['css_queryloop_item_bg_image']['val']['desktop'] ) && strpos($section['attr']['css_queryloop_item_bg_image']['val']['desktop'], '{featured_image') !== false ) {
 													$sectionqi_bg_dd = be_dynamic_data($section['attr']['css_queryloop_item_bg_image']['val']['desktop']);
@@ -1447,7 +1449,7 @@ if( ! class_exists('Mfn_Builder_Front') )
               				self::$item_type = false;
 											self::$item_id = false;
 											$s_iterate++;
-											
+
               			endwhile;
 
               			self::$is_ql_section = false;
@@ -1842,8 +1844,8 @@ if( ! class_exists('Mfn_Builder_Front') )
 							}
 						}
 					}
- 
-					
+
+
 				}
 
 				// styles ---
@@ -2090,7 +2092,7 @@ if( ! class_exists('Mfn_Builder_Front') )
 
 			if( $vb ) {
 				if( !self::$is_ql_section && !self::$is_ql_wrap ) $wrap_class .= ' vb-item';
-				echo '<div '. $wrap_id .' class="'. $wrap_class .' clearfix mfn-module test1" '. $global_wrap_attr .' data-desktop-col="'. $desktop_size_col .'" data-laptop-col="'. $laptop_size_col .'" data-tablet-col="'. $tablet_size_col .'" data-mobile-col="'. $mobile_size_col .'" data-desktop-size="'. $desktop_size .'" data-laptop-size="'. $laptop_size .'" data-tablet-size="'. $tablet_size .'" data-mobile-size="'. $mobile_size .'" data-order="'. $w .'"  data-uid="'. $original_uid .'" style="'. $wrap_style .'" '. $parallax .' '. $wrap_data .'>';
+				echo '<div '. $wrap_id .' class="'. $wrap_class .' clearfix mfn-module" '. $global_wrap_attr .' data-desktop-col="'. $desktop_size_col .'" data-laptop-col="'. $laptop_size_col .'" data-tablet-col="'. $tablet_size_col .'" data-mobile-col="'. $mobile_size_col .'" data-desktop-size="'. $desktop_size .'" data-laptop-size="'. $laptop_size .'" data-tablet-size="'. $tablet_size .'" data-mobile-size="'. $mobile_size .'" data-order="'. $w .'"  data-uid="'. $original_uid .'" style="'. $wrap_style .'" '. $parallax .' '. $wrap_data .'>';
 
 				if( empty($wrap['attr']['type']) ) echo '<div class="mfn-drag-helper mfn-dh-before placeholder-wrap"></div><div class="mfn-drag-helper mfn-dh-after placeholder-wrap"></div>';
 
@@ -2100,7 +2102,7 @@ if( ! class_exists('Mfn_Builder_Front') )
 				}
 			} else {
 				if( !$vb ) $wrap_class .= ' vb-item';
-				echo '<div '. $wrap_id .' class="'. $wrap_class .' clearfix test2" data-desktop-col="'. $desktop_size_col .'" data-laptop-col="'. $laptop_size_col .'" data-tablet-col="'. $tablet_size_col .'" data-mobile-col="'. $mobile_size_col .'" style="'. $wrap_style .'" '. $parallax .' '. $animate .' '. $wrap_data .'>';
+				echo '<div '. $wrap_id .' class="'. $wrap_class .' clearfix" data-desktop-col="'. $desktop_size_col .'" data-laptop-col="'. $laptop_size_col .'" data-tablet-col="'. $tablet_size_col .'" data-mobile-col="'. $mobile_size_col .'" style="'. $wrap_style .'" '. $parallax .' '. $animate .' '. $wrap_data .'>';
 			}
 
 
@@ -2826,7 +2828,7 @@ if( ! class_exists('Mfn_Builder_Front') )
 				if( $vb ) {
 					$tooltip = false;
 
-					if( !self::$is_ql_section && !self::$is_ql_wrap ) $item_class .= ' vb-item'; 
+					if( !self::$is_ql_section && !self::$is_ql_wrap ) $item_class .= ' vb-item';
 
 					echo '<div '.$tooltip.' '.$item_id.' data-order="'. $i .'"  data-uid="'. $item['uid'] .'" data-minsize="'.$item['size'].'" data-desktop-size="'.$desktop_size.'" data-laptop-size="'.$laptop_size.'" data-tablet-size="'.$tablet_size.'" data-mobile-size="'.$mobile_size.'" class="column mcb-column '. $item_class .' mfn-module" style="'.$item_style.'">';
 					// echo Mfn_Builder_Helper::itemTools($item['size']);
@@ -2959,11 +2961,11 @@ if( ! class_exists('Mfn_Builder_Front') )
 						$tax_q['tax_query'][] = array('taxonomy' => $t, 'field' => 'term_id', 'operator' => 'NOT IN', 'terms' => $tx);
 					}
 				}
-			
+
 			}
-			
+
 			return $tax_q;
-  
+
   	}
 
   }

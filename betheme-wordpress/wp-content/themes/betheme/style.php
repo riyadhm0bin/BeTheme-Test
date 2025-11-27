@@ -1135,6 +1135,11 @@ body{
 	--mfn-button-icon-color-hover: <?php echo esc_attr( mfn_opts_get( 'button-icon-color', '#626262', [ 'key' => 'hover' ]) ); ?>;
 	--mfn-button-box-shadow: <?php echo esc_attr( mfn_opts_get( 'button-box-shadow', 'unset', [ 'not_empty' => true ]) ); ?>;
 
+	<?php if( mfn_opts_get('button-background-type') ): ?>
+		--mfn-button-bg-image: <?php echo esc_attr( mfn_opts_get( 'button-gradient', 'unset', [ 'key' => 'string' ]) ); ?>;
+		--mfn-button-bg-image-hover: <?php echo esc_attr( mfn_opts_get( 'button-gradient-hover', 'unset', [ 'key' => 'string' ]) ); ?>;
+	<?php endif; ?>
+
 	--mfn-button-theme-color: <?php echo esc_attr( mfn_opts_get( 'button-highlighted-color', '#626262', [ 'key' => 'normal' ]) ); ?>;
   --mfn-button-theme-color-hover: <?php echo esc_attr( mfn_opts_get( 'button-highlighted-color', '#626262', [ 'key' => 'hover' ]) ); ?>;
   --mfn-button-theme-bg: <?php echo esc_attr( mfn_opts_get( 'button-highlighted-background', '#dbdddf', [ 'key' => 'normal' ]) ); ?>;
@@ -1144,6 +1149,11 @@ body{
 	--mfn-button-theme-icon-color: <?php echo esc_attr( mfn_opts_get( 'button-highlighted-icon-color', '#626262', [ 'key' => 'normal' ]) ); ?>;
 	--mfn-button-theme-icon-color-hover: <?php echo esc_attr( mfn_opts_get( 'button-highlighted-icon-color', '#626262', [ 'key' => 'hover' ]) ); ?>;
 	--mfn-button-theme-box-shadow: <?php echo esc_attr( mfn_opts_get( 'button-highlighted-box-shadow', 'unset', [ 'not_empty' => true ]) ); ?>;
+
+	<?php if( mfn_opts_get('button-highlighted-background-type') ): ?>
+		--mfn-button-theme-bg-image: <?php echo esc_attr( mfn_opts_get( 'button-highlighted-gradient', 'unset', [ 'key' => 'string' ]) ); ?>;
+		--mfn-button-theme-bg-image-hover: <?php echo esc_attr( mfn_opts_get( 'button-highlighted-gradient-hover', 'unset', [ 'key' => 'string' ]) ); ?>;
+	<?php endif; ?>
 
 	--mfn-button-shop-color: <?php echo esc_attr( mfn_opts_get( 'button-shop-color', '#626262', [ 'key' => 'normal' ]) ); ?>;
 	--mfn-button-shop-color-hover: <?php echo esc_attr( mfn_opts_get( 'button-shop-color', '#626262', [ 'key' => 'hover' ]) ); ?>;
@@ -1155,6 +1165,11 @@ body{
 	--mfn-button-shop-icon-color-hover: <?php echo esc_attr( mfn_opts_get( 'button-shop-icon-color', '#626262', [ 'key' => 'hover' ]) ); ?>;
 	--mfn-button-shop-box-shadow: <?php echo esc_attr( mfn_opts_get( 'button-shop-box-shadow', 'unset', [ 'not_empty' => true ]) ); ?>;
 
+	<?php if( mfn_opts_get('button-shop-background-type') ): ?>
+		--mfn-button-shop-bg-image: <?php echo esc_attr( mfn_opts_get( 'button-shop-gradient', 'unset', [ 'key' => 'string' ]) ); ?>;
+		--mfn-button-shop-bg-image-hover: <?php echo esc_attr( mfn_opts_get( 'button-shop-gradient-hover', 'unset', [ 'key' => 'string' ]) ); ?>;
+	<?php endif; ?>
+
 	--mfn-button-action-color: <?php echo esc_attr( mfn_opts_get( 'button-action-color', '#626262', [ 'key' => 'normal' ]) ); ?>;
 	--mfn-button-action-color-hover: <?php echo esc_attr( mfn_opts_get( 'button-action-color', '#626262', [ 'key' => 'hover' ]) ); ?>;
 	--mfn-button-action-bg: <?php echo esc_attr( mfn_opts_get( 'button-action-background', '#dbdddf', [ 'key' => 'normal' ]) ); ?>;
@@ -1164,6 +1179,11 @@ body{
 	--mfn-button-action-icon-color: <?php echo esc_attr( mfn_opts_get( 'button-action-icon-color', '#626262', [ 'key' => 'normal' ]) ); ?>;
 	--mfn-button-action-icon-color-hover: <?php echo esc_attr( mfn_opts_get( 'button-action-icon-color', '#626262', [ 'key' => 'hover' ]) ); ?>;
 	--mfn-button-action-box-shadow: <?php echo esc_attr( mfn_opts_get( 'button-action-box-shadow', 'unset', [ 'not_empty' => true ]) ); ?>;
+
+	<?php if( mfn_opts_get('button-action-background-type') ): ?>
+		--mfn-button-action-bg-image: <?php echo esc_attr( mfn_opts_get( 'button-action-gradient', 'unset', [ 'key' => 'string' ]) ); ?>;
+		--mfn-button-action-bg-image-hover: <?php echo esc_attr( mfn_opts_get( 'button-action-gradient-hover', 'unset', [ 'key' => 'string' ]) ); ?>;
+	<?php endif; ?>
 }
 
 @media only screen and (max-width: 959px){
@@ -1177,18 +1197,13 @@ body{
 		?>
 	}
 
-<?php
-
-	$product_gallery_grid_cols_tablet = mfn_opts_get('shop-product-gallery-grid-cols-tablet');
-	if( !empty($product_gallery_grid_cols_tablet) ) {
-		echo '.column_product_images .mfn-product-images-wrapper .mfn-product-gallery-grid{ grid-template-columns: repeat('.$product_gallery_grid_cols_tablet.', 1fr); }';
-	}
-
-?>
-
+	<?php
+		$product_gallery_grid_cols_tablet = mfn_opts_get('shop-product-gallery-grid-cols-tablet');
+		if( !empty($product_gallery_grid_cols_tablet) ) {
+			echo '.column_product_images .mfn-product-images-wrapper .mfn-product-gallery-grid{ grid-template-columns: repeat('.$product_gallery_grid_cols_tablet.', 1fr); }';
+		}
+	?>
 }
-
-
 
 @media only screen and (max-width: 768px){
 	body{

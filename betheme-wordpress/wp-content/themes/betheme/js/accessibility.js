@@ -31,7 +31,7 @@
 
     utils: {
       isSimpleHamburgerStack: !($('body').hasClass('header-simple') && !$('body').hasClass('mobile-side-slide')),
-      switchExpanded: (el, state) => $(el).attr('aria-expanded', state),
+      switchExpanded: (el, state) => $(el).attr('aria-expanded', state).parent('li').attr('aria-expanded', state), // FIX: .parent('li') - add aria-expanded to megamenu parent li
       isHeaderBuilderEnabled: $('body').hasClass('mfn-header-template'),
     },
 

@@ -149,9 +149,9 @@ class MFN_Options_gradient extends Mfn_Options_field
 				echo '</div>';
 			echo '</div>';
 
-			// location 2
+			// angle
 
-			echo '<div class="form-control mfn-form-row activeif activeif-gradient-type'.$rand.'" data-condition="{&quot;id&quot;:&quot;gradient-type-aep0i7o49&quot;,&quot;opt&quot;:&quot;is&quot;,&quot;val&quot;:&quot;linear-gradient&quot;}">';
+			echo '<div class="form-control mfn-form-row activeif activeif-gradient-type'.$rand.'" data-id="gradient-type'.$rand.'" data-opt="is" data-val="linear-gradient">';
 				echo '<label>Angle</label>';
 				echo '<div class="form-group range-slider">';
 					echo '<div class="form-control">';
@@ -167,7 +167,7 @@ class MFN_Options_gradient extends Mfn_Options_field
 
 			// position
 
-			echo '<div class="form-control mfn-form-row activeif activeif-gradient-type'.$rand.'" data-condition="{&quot;id&quot;:&quot;gradient-type-z8kzwwr5j&quot;,&quot;opt&quot;:&quot;is&quot;,&quot;val&quot;:&quot;radial-gradient&quot;}">';
+			echo '<div class="form-control mfn-form-row activeif activeif-gradient-type'.$rand.'" data-id="gradient-type'.$rand.'" data-opt="is" data-val="radial-gradient">';
 				echo '<div class="form-group">';
 					echo '<label>Position</label>';
 					echo '<select '. $this->get_name( $meta, 'position' ) .' class="mfn-form-control field-to-object mfn-form-input gradient-position">';

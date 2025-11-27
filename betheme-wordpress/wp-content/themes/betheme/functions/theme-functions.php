@@ -2794,6 +2794,54 @@ function mfn_get_attachment_image_src( $image, $attachment_id, $size, $icon ){
 add_filter( 'wp_get_attachment_image_src', 'mfn_get_attachment_image_src', 10, 4 );
 
 /**
+ * Images optimization
+ */
+
+function mfn_images_optimization($upload) {
+
+  if ( mfn_opts_get('images-optimization') && in_array($upload['type'], ['image/jpeg', 'image/png']) ) {
+
+    $file_path = $upload['file'];
+
+    if (extension_loaded('imagick') || extension_loaded('gd')) {
+
+      $image_editor = wp_get_image_editor($file_path);
+
+      if (!is_wp_error($image_editor)) {
+
+        $quality = 80;
+        $image_editor->set_quality($quality);
+
+        $file_info = pathinfo($file_path);
+        $dirname = $file_info['dirname'];
+        $filename = $file_info['filename'];
+        $def_filename = wp_unique_filename($dirname, $filename . '.webp');
+        $new_file_path = $dirname . '/' . $def_filename;
+
+        $saved_image = $image_editor->save($new_file_path, 'image/webp');
+
+        if (!is_wp_error($saved_image) && file_exists($saved_image['path'])) {
+          $upload['file'] = $saved_image['path'];
+          $upload['url'] = str_replace(basename($upload['url']), basename($saved_image['path']), $upload['url']);
+          $upload['type'] = 'image/webp';
+
+          if( mfn_opts_get('images-optimization-remove') ){
+            @unlink($file_path);
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+  return $upload;
+}
+add_filter('wp_handle_upload', 'mfn_images_optimization');
+
+/**
  * Single Post Navigation | SET query order
  */
 

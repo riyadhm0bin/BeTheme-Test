@@ -1487,6 +1487,8 @@ if (! function_exists('sc_header_menu')) {
 		$ul_classes[] = 'mfn-menu-tablet-align-'.$alignment_tablet;
 		$ul_classes[] = 'mfn-menu-mobile-align-'.$alignment_mobile;
 
+		if(!empty($attr['hide_megamenu_custom_rwd'])) $ul_classes[] = 'mfn-megamenu-'.$attr['hide_megamenu_custom_rwd'];
+
 		// icon align
 
 		$ul_classes[] = 'mfn-menu-icon-'.$icon_align;
@@ -1675,7 +1677,9 @@ if (! function_exists('sc_header_icon')) {
 				$attr_link = wc_get_page_permalink( 'myaccount' );
 			}
 
-			$classes[] = 'mfn-header-account-link toggle-login-modal is-boxed';
+			$classes[] = 'mfn-header-account-link is-boxed';
+			if( empty(mfn_opts_get('keyboard-support')) ) $classes[] = 'toggle-login-modal';
+
 			if( empty($image) && empty($icon) ) $icon_html = '<svg viewBox="0 0 26 26" aria-hidden="true"><defs><style>.path{fill:none;stroke:#333333;stroke-width:1.5px;}</style></defs><circle class="path" cx="13" cy="9.7" r="4.1"/><path class="path" d="M19.51,18.1v2.31h-13V18.1c0-2.37,2.92-4.3,6.51-4.3S19.51,15.73,19.51,18.1Z"/></svg>';
 		}else if( $type == 'cart' ){
 
@@ -5041,60 +5045,66 @@ if (! function_exists('sc_blog')) {
 
 							// categories
 
-							$output .= '<ul class="categories">';
+							if( '1' === $filters || 'only-categories' === $filters ){
+								$output .= '<ul class="categories">';
 
-								$output .= '<li class="reset '.( is_home() ? 'current-cat' : '' ).'"><a class="all" data-rel="*" href="'.get_permalink( get_option( 'page_for_posts' ) ).'">'. esc_html($translate['all']) .'</a></li>';
+									$output .= '<li class="reset '.( is_home() ? 'current-cat' : '' ).'"><a class="all" data-rel="*" href="'.get_permalink( get_option( 'page_for_posts' ) ).'">'. esc_html($translate['all']) .'</a></li>';
 
-								if ($categories = get_categories()) {
+									if ($categories = get_categories()) {
 
-									$exclude = mfn_get_excluded_categories();
+										$exclude = mfn_get_excluded_categories();
 
-									foreach ($categories as $category) {
+										foreach ($categories as $category) {
 
-										if ($exclude && in_array($category->slug, $exclude)) {
-											continue;
+											if ($exclude && in_array($category->slug, $exclude)) {
+												continue;
+											}
+
+											$output .= '<li class="'. esc_attr($category->slug) .' '.( is_category($category->slug) ? 'current-cat' : '' ).'"><a data-rel=".category-'. esc_attr($category->term_id) .'" href="'. esc_url(get_term_link($category)) .'">'. esc_html($category->name) .'</a></li>';
+
 										}
-
-										$output .= '<li class="'. esc_attr($category->slug) .' '.( is_category($category->slug) ? 'current-cat' : '' ).'"><a data-rel=".category-'. esc_attr($category->term_id) .'" href="'. esc_url(get_term_link($category)) .'">'. esc_html($category->name) .'</a></li>';
-
 									}
-								}
 
-								$output .= '<li class="close"><a href="#" aria-label="'. __('icon close', 'betheme') .'"><i class="icon-cancel"></i></a></li>';
+									$output .= '<li class="close"><a href="#" aria-label="'. __('icon close', 'betheme') .'"><i class="icon-cancel"></i></a></li>';
 
-							$output .= '</ul>';
+								$output .= '</ul>';
+							}
 
 							// tags
 
-							$output .= '<ul class="tags">';
+							if( '1' === $filters || 'only-tags' === $filters ){
+								$output .= '<ul class="tags">';
 
-								$output .= '<li class="reset '.( is_home() ? 'current-cat' : '' ).'"><a class="all" data-rel="*" href="'.get_permalink( get_option( 'page_for_posts' ) ).'">'. esc_html($translate['all']) .'</a></li>';
+									$output .= '<li class="reset '.( is_home() ? 'current-cat' : '' ).'"><a class="all" data-rel="*" href="'.get_permalink( get_option( 'page_for_posts' ) ).'">'. esc_html($translate['all']) .'</a></li>';
 
-								if ($tags = get_tags()) {
-									foreach ($tags as $tag) {
-										$output .= '<li class="'. esc_attr($tag->slug) .' '.( is_tag($tag->slug) ? 'current-cat' : '' ).'"><a data-rel=".tag-'. esc_attr($tag->slug) .'" href="'. esc_url(get_tag_link($tag)) .'">'. esc_html($tag->name) .'</a></li>';
+									if ($tags = get_tags()) {
+										foreach ($tags as $tag) {
+											$output .= '<li class="'. esc_attr($tag->slug) .' '.( is_tag($tag->slug) ? 'current-cat' : '' ).'"><a data-rel=".tag-'. esc_attr($tag->slug) .'" href="'. esc_url(get_tag_link($tag)) .'">'. esc_html($tag->name) .'</a></li>';
+										}
 									}
-								}
 
-								$output .= '<li class="close"><a href="#" aria-label="'. __('icon close', 'betheme') .'"><i class="icon-cancel"></i></a></li>';
+									$output .= '<li class="close"><a href="#" aria-label="'. __('icon close', 'betheme') .'"><i class="icon-cancel"></i></a></li>';
 
-							$output .= '</ul>';
+								$output .= '</ul>';
+							}
 
 							// authors
 
-							$output .= '<ul class="authors">';
+							if( '1' === $filters || 'only-authors' === $filters ){
+								$output .= '<ul class="authors">';
 
-								$output .= '<li class="reset '.( is_home() ? 'current-cat' : '' ).'"><a class="all" data-rel="*" href="'.get_permalink( get_option( 'page_for_posts' ) ).'">'. esc_html($translate['all']) .'</a></li>';
-								$authors = mfn_get_authors();
+									$output .= '<li class="reset '.( is_home() ? 'current-cat' : '' ).'"><a class="all" data-rel="*" href="'.get_permalink( get_option( 'page_for_posts' ) ).'">'. esc_html($translate['all']) .'</a></li>';
+									$authors = mfn_get_authors();
 
-								if (is_array($authors)) {
-									foreach ($authors as $auth) {
-										$output .= '<li class="'. esc_attr(mfn_slug($auth->data->user_login)) .' '.( is_author($auth->ID) ? 'current-cat' : '' ).'"><a data-rel=".author-'. mfn_slug($auth->data->user_login) .'" href="'. get_author_posts_url($auth->ID) .'">'. $auth->data->display_name .'</a></li>';
+									if (is_array($authors)) {
+										foreach ($authors as $auth) {
+											$output .= '<li class="'. esc_attr(mfn_slug($auth->data->user_login)) .' '.( is_author($auth->ID) ? 'current-cat' : '' ).'"><a data-rel=".author-'. mfn_slug($auth->data->user_login) .'" href="'. get_author_posts_url($auth->ID) .'">'. $auth->data->display_name .'</a></li>';
+										}
 									}
-								}
-								$output .= '<li class="close"><a href="#" aria-label="'. __('icon close', 'betheme') .'"><i class="icon-cancel"></i></a></li>';
+									$output .= '<li class="close"><a href="#" aria-label="'. __('icon close', 'betheme') .'"><i class="icon-cancel"></i></a></li>';
 
-							$output .= '</ul>';
+								$output .= '</ul>';
+							}
 
 						$output .= '</div>';
 
@@ -5730,7 +5740,7 @@ if (! function_exists('sc_shop_slider')) {
 								wc_get_template( 'single-product/sale-flash.php');
 								do_action( 'mfn_product_image' );
 								$output .= ob_get_clean();
-									$output .= '<a href="'. esc_url(get_the_permalink()) .'">';
+									$output .= '<a href="'. esc_url(get_the_permalink()) .'" aria-label="'. esc_html(get_the_title()) .'">';
 										$output .= '<div class="hover_box_wrapper">';
 
 											$output .= get_the_post_thumbnail(null, 'woocommerce_thumbnail', array('class'=>'visible_photo scale-with-grid' ));
@@ -5754,7 +5764,7 @@ if (! function_exists('sc_shop_slider')) {
 									do_action( 'mfn_product_image' );
 									$output .= ob_get_clean();
 
-										$output .= '<a href="'. esc_url(get_the_permalink()) .'">';
+										$output .= '<a href="'. esc_url(get_the_permalink()) .'" aria-label="'. esc_html(get_the_title()) .'">';
 											$output .= '<div class="mask"></div>';
 											$output .= get_the_post_thumbnail(null, 'woocommerce_thumbnail', array( 'class' => 'scale-with-grid' ));
 										$output .= '</a>';
@@ -8335,6 +8345,7 @@ if (! function_exists('sc_image')) {
 				$output .= '</div>';
 
 				if ($caption) {
+					$caption = be_dynamic_data($caption);
 					$output .= '<p class="wp-caption-text">'. wp_kses($caption, mfn_allowed_html('caption')) .'</p>';
 				}
 
@@ -8782,7 +8793,7 @@ if (! function_exists('sc_button')) {
 			}
 
 			if( $attr['button_function'] == 'open-mfn-popup' ) {
-				$data_tags[] = 'data-mfnpopup="'.(!empty($attr['button_function_popupid']) ? $attr['button_function_popupid'] : 'popup_id_required').'"';
+				$data_tags[] = 'data-mfnpopup="'.(!empty($attr['button_function_popupid']) ? be_dynamic_data($attr['button_function_popupid']) : 'popup_id_required').'"';
 			}
 
 			if( $attr['button_function'] == 'mfn-go-to' ) {
@@ -9944,8 +9955,10 @@ if (! function_exists('sc_icon_box_2')) {
  			'content' => '',
  			'title_tag' => 'h4',
  			'icon' 	=> '',
+ 			'icon_hover' 	=> '',
  			'label' => '',
  			'image' => '',
+ 			'image_hover' => '',
 
  			'link' => '',
  			'link_title' => '',
@@ -9970,7 +9983,7 @@ if (! function_exists('sc_icon_box_2')) {
 		$image_tag = false;
 
 		if( !empty($image) && strpos($image, '#') !== false ){
-			$image_tag = mfn_get_attachment($image);
+			$image_tag = mfn_get_attachment($image, false, false, ['class'=>'primary']);
 		}else{
 			$image = mfn_vc_image($image);
 		}
@@ -10059,6 +10072,13 @@ if (! function_exists('sc_icon_box_2')) {
  			$classes[] = 'mfn-icon-box-'. esc_attr( $hover );
  		}
 
+		if( ! empty( $attr['image'] ) && ! empty( $attr['image_hover'] ) ){
+			$classes[] = 'mfn-icon-box-image-hover';
+		}
+		if( empty( $attr['image'] ) && ! empty( $attr['icon'] ) && ! empty( $attr['icon_hover'] ) ){
+			$classes[] = 'mfn-icon-box-image-hover';
+		}
+
  		$classes = implode(' ', $classes);
 
  		$is_love_item = false;
@@ -10080,7 +10100,7 @@ if (! function_exists('sc_icon_box_2')) {
 		$image = be_dynamic_data($image);
 
 		if( is_numeric($image) ){
-			$image_tag = wp_get_attachment_image($image, 'full');
+			$image_tag = wp_get_attachment_image($image, 'full', '', ['class'=>'primary']);
 		}
 
 		// image class
@@ -10127,10 +10147,16 @@ if (! function_exists('sc_icon_box_2')) {
  						if( $image_tag ){
  							$output .= $image_tag;
  						}else{
- 							$output .= '<img class="'. esc_attr($img_class) .'" '. $src .' alt="'. esc_attr(mfn_get_attachment_data($image, 'alt')) .'" width="'. esc_attr(mfn_get_attachment_data($image, 'width')) .'" height="'. esc_attr(mfn_get_attachment_data($image, 'height')) .'"/>';
+ 							$output .= '<img class="'. esc_attr($img_class) .' primary" '. $src .' alt="'. esc_attr(mfn_get_attachment_data($image, 'alt')) .'" width="'. esc_attr(mfn_get_attachment_data($image, 'width')) .'" height="'. esc_attr(mfn_get_attachment_data($image, 'height')) .'"/>';
  						}
+						if( $image_hover ){
+							$output .= '<img class="secondary" src="'. $image_hover .'" alt="'. esc_attr(mfn_get_attachment_data($image_hover, 'alt')) .'" width="'. esc_attr(mfn_get_attachment_data($image_hover, 'width')) .'" height="'. esc_attr(mfn_get_attachment_data($image_hover, 'height')) .'"/>';
+						}
  					} elseif( $icon ){
- 						$output .= '<i class="'. esc_attr($icon) .'" aria-hidden="true"></i>';
+ 						$output .= '<i class="'. esc_attr($icon) .' primary" aria-hidden="true"></i>';
+						if( $icon_hover ){
+							$output .= '<i class="'. esc_attr($icon_hover) .' secondary" aria-hidden="true"></i>';
+						}
  					} elseif( $label ){
  						$output .= '<span class="icon-label">'.$label.'</span>';
  					}
@@ -10320,7 +10346,7 @@ if (! function_exists('sc_our_team')) {
 							$output .= '<a target="_blank" href="'. esc_url($facebook) .'" class="icon_bar icon_bar_small facebook" aria-label="facebook"><span class="t"><i class="icon-facebook"></i></span><span class="b"><i class="icon-facebook" aria-hidden="true"></i></span></a>';
 						}
 						if ($twitter) {
-							$output .= '<a target="_blank" href="'. esc_url($twitter) .'" class="icon_bar icon_bar_small twitter" aria-label="twitter"><span class="t"><i class="icon-twitter"></i></span><span class="b"><i class="icon-twitter" aria-hidden="true"></i></span></a>';
+							$output .= '<a target="_blank" href="'. esc_url($twitter) .'" class="icon_bar icon_bar_small twitter" aria-label="twitter"><span class="t"><i class="icon-x-twitter"></i></span><span class="b"><i class="icon-x-twitter" aria-hidden="true"></i></span></a>';
 						}
 						if ($linkedin) {
 							$output .= '<a target="_blank" href="'. esc_url($linkedin) .'" class="icon_bar icon_bar_small linkedin" aria-label="linkedin"><span class="t"><i class="icon-linkedin"></i></span><span class="b"><i class="icon-linkedin" aria-hidden="true"></i></span></a>';
@@ -10488,7 +10514,7 @@ if (! function_exists('sc_our_team_list')) {
 								$output .= '<a target="_blank" href="'. esc_url($facebook) .'" class="icon_bar icon_bar_small facebook" aria-label="facebook"><span class="t"><i class="icon-facebook"></i></span><span class="b"><i class="icon-facebook" aria-hidden="true"></i></span></a>';
 							}
 							if ($twitter) {
-								$output .= '<a target="_blank" href="'. esc_url($twitter) .'" class="icon_bar icon_bar_small twitter" aria-label="twitter"><span class="t"><i class="icon-twitter"></i></span><span class="b"><i class="icon-twitter" aria-hidden="true"></i></span></a>';
+								$output .= '<a target="_blank" href="'. esc_url($twitter) .'" class="icon_bar icon_bar_small twitter" aria-label="twitter"><span class="t"><i class="icon-x-twitter"></i></span><span class="b"><i class="icon-x-twitter" aria-hidden="true"></i></span></a>';
 							}
 							if ($linkedin) {
 								$output .= '<a target="_blank" href="'. esc_url($linkedin) .'" class="icon_bar icon_bar_small linkedin" aria-label="linkedin"><span class="t"><i class="icon-linkedin"></i></span><span class="b"><i class="icon-linkedin" aria-hidden="true"></i></span></a>';
@@ -12453,7 +12479,7 @@ if (! function_exists('sc_progress_bars')) {
 
 				if( is_array( $tabs ) ) {
 					foreach( $tabs as $tab ){
-						$output .= sc_bar( $tab );
+						$output .= sc_bar( $tab, $attr );
 					}
 				}
 
@@ -12478,7 +12504,7 @@ if (! function_exists('sc_progress_bars')) {
  */
 
 if (! function_exists('sc_bar')) {
-	function sc_bar($attr, $content = null)
+	function sc_bar($attr, $parent_attr = null)
 	{
 		extract(shortcode_atts(array(
 			'title' => '',
@@ -12509,7 +12535,9 @@ if (! function_exists('sc_bar')) {
 
 			$output .= '<h6>';
 				$output .= wp_kses($title, mfn_allowed_html());
-				$output .= '<span class="label">'. intval($value, 10) .'<em>%</em></span>';
+				if( empty( $parent_attr['css_progress_bars_listlih6label_display'] ) ){
+					$output .= ' <span class="label">'. intval($value, 10) .'<em>%</em></span>';
+				}
 			$output .= '</h6>';
 
 			// This variable has been safely escaped above in this function

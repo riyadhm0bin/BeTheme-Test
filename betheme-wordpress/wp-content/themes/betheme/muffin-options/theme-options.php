@@ -1371,16 +1371,46 @@ if( ! function_exists( 'mfn_opts_setup' ) )
 				),
 
 				array(
+          'id' => 'button-background-type',
+          'attr_id' => 'button-background-type',
+          'type' => 'switch',
+          'title' => __('Background type', 'mfn-opts'),
+					'class' => 'preview-type',
+          'options' => array(
+            '' => __('Color', 'mfn-opts'),
+            '1' => __('Gradient', 'mfn-opts'),
+          ),
+          'std' => '',
+        ),
+
+				array(
 					'id' => 'button-background',
 					'type' => 'color_multi',
 					'data_attr' => 'data-csspath=".button" data-responsive="desktop" data-style="background-color" data-unit=""',
-					'title' => __('Background', 'mfn-opts'),
+					'title' => __('Background color', 'mfn-opts'),
+					'condition' => array( 'id' => 'button-background-type', 'opt' => 'is', 'val' => '' ), // is or isnt and value
 					'class' => 'form-content-full-width preview-color to-inline-style',
 					'alpha' => true,
 					'std' => [
 						'normal' => '#dbdddf',
 						'hover' => '#d3d3d3',
 					],
+				),
+
+				array(
+					'id' => 'button-gradient',
+					'type' => 'gradient',
+					'title' => __('Background gradient', 'mfn-opts'),
+					'condition' => array( 'id' => 'button-background-type', 'opt' => 'isnt', 'val' => '' ), // is or isnt and value
+					'class' => 'form-content-full-width preview-gradient to-inline-style',
+				),
+
+				array(
+					'id' => 'button-gradient-hover',
+					'type' => 'gradient',
+					'title' => __('Background gradient hover', 'mfn-opts'),
+					'condition' => array( 'id' => 'button-background-type', 'opt' => 'isnt', 'val' => '' ), // is or isnt and value
+					'class' => 'form-content-full-width preview-gradient to-inline-style',
 				),
 
 				array(
@@ -1438,16 +1468,46 @@ if( ! function_exists( 'mfn_opts_setup' ) )
 				),
 
 				array(
+          'id' => 'button-highlighted-background-type',
+          'attr_id' => 'button-highlighted-background-type',
+          'type' => 'switch',
+          'class' => 'preview-type',
+          'title' => __('Background type', 'mfn-opts'),
+          'options' => array(
+            '' => __('Color', 'mfn-opts'),
+            '1' => __('Gradient', 'mfn-opts'),
+          ),
+          'std' => '',
+        ),
+
+				array(
 					'id' => 'button-highlighted-background',
 					'type' => 'color_multi',
 					'data_attr' => 'data-csspath=".button.button_theme" data-responsive="desktop" data-style="background-color" data-unit=""',
 					'title' => __('Background', 'mfn-opts'),
+					'condition' => array( 'id' => 'button-highlighted-background-type', 'opt' => 'is', 'val' => '' ), // is or isnt and value
 					'class' => 'form-content-full-width preview-color to-inline-style',
 					'alpha' => true,
 					'std' => [
 						'normal' => '#0095eb',
 						'hover' => '#007cc3',
 					],
+				),
+
+				array(
+					'id' => 'button-highlighted-gradient',
+					'type' => 'gradient',
+					'title' => __('Background gradient', 'mfn-opts'),
+					'condition' => array( 'id' => 'button-highlighted-background-type', 'opt' => 'isnt', 'val' => '' ), // is or isnt and value
+					'class' => 'form-content-full-width preview-gradient to-inline-style',
+				),
+
+				array(
+					'id' => 'button-highlighted-gradient-hover',
+					'type' => 'gradient',
+					'title' => __('Background gradient hover', 'mfn-opts'),
+					'condition' => array( 'id' => 'button-highlighted-background-type', 'opt' => 'isnt', 'val' => '' ), // is or isnt and value
+					'class' => 'form-content-full-width preview-gradient to-inline-style',
 				),
 
 				array(
@@ -1493,9 +1553,23 @@ if( ! function_exists( 'mfn_opts_setup' ) )
 				),
 
 				array(
+          'id' => 'button-shop-background-type',
+          'attr_id' => 'button-shop-background-type',
+          'type' => 'switch',
+          'class' => 'preview-type',
+          'title' => __('Background type', 'mfn-opts'),
+          'options' => array(
+            '' => __('Color', 'mfn-opts'),
+            '1' => __('Gradient', 'mfn-opts'),
+          ),
+          'std' => '',
+        ),
+
+				array(
 					'id' => 'button-shop-background',
 					'type' => 'color_multi',
 					'title' => __('Background', 'mfn-opts'),
+					'condition' => array( 'id' => 'button-shop-background-type', 'opt' => 'is', 'val' => '' ), // is or isnt and value
 					'data_attr' => 'data-csspath=".button.alt" data-responsive="desktop" data-style="background-color" data-unit=""',
 					'class' => 'form-content-full-width preview-color to-inline-style',
 					'alpha' => true,
@@ -1503,6 +1577,22 @@ if( ! function_exists( 'mfn_opts_setup' ) )
 						'normal' => '#0095eb',
 						'hover' => '#007cc3',
 					],
+				),
+
+				array(
+					'id' => 'button-shop-gradient',
+					'type' => 'gradient',
+					'title' => __('Background gradient', 'mfn-opts'),
+					'condition' => array( 'id' => 'button-shop-background-type', 'opt' => 'isnt', 'val' => '' ), // is or isnt and value
+					'class' => 'form-content-full-width preview-gradient to-inline-style',
+				),
+
+				array(
+					'id' => 'button-shop-gradient-hover',
+					'type' => 'gradient',
+					'title' => __('Background gradient hover', 'mfn-opts'),
+					'condition' => array( 'id' => 'button-shop-background-type', 'opt' => 'isnt', 'val' => '' ), // is or isnt and value
+					'class' => 'form-content-full-width preview-gradient to-inline-style',
 				),
 
 				array(
@@ -1560,8 +1650,22 @@ if( ! function_exists( 'mfn_opts_setup' ) )
 				),
 
 				array(
+          'id' => 'button-action-background-type',
+          'attr_id' => 'button-action-background-type',
+          'type' => 'switch',
+          'class' => 'preview-type',
+          'title' => __('Background type', 'mfn-opts'),
+          'options' => array(
+            '' => __('Color', 'mfn-opts'),
+            '1' => __('Gradient', 'mfn-opts'),
+          ),
+          'std' => '',
+        ),
+
+				array(
 					'id' => 'button-action-background',
 					'type' => 'color_multi',
+					'condition' => array( 'id' => 'button-action-background-type', 'opt' => 'is', 'val' => '' ), // is or isnt and value
 					'data_attr' => 'data-csspath=".button.action_button" data-responsive="desktop" data-style="background-color" data-unit=""',
 					'title' => __('Background', 'mfn-opts'),
 					'class' => 'form-content-full-width preview-color to-inline-style',
@@ -1570,6 +1674,22 @@ if( ! function_exists( 'mfn_opts_setup' ) )
 						'normal' => '#dbdddf',
 						'hover' => '#d3d3d3',
 					],
+				),
+
+				array(
+					'id' => 'button-action-gradient',
+					'type' => 'gradient',
+					'title' => __('Background gradient', 'mfn-opts'),
+					'condition' => array( 'id' => 'button-action-background-type', 'opt' => 'isnt', 'val' => '' ), // is or isnt and value
+					'class' => 'form-content-full-width preview-gradient to-inline-style',
+				),
+
+				array(
+					'id' => 'button-action-gradient-hover',
+					'type' => 'gradient',
+					'title' => __('Background gradient hover', 'mfn-opts'),
+					'condition' => array( 'id' => 'button-action-background-type', 'opt' => 'isnt', 'val' => '' ), // is or isnt and value
+					'class' => 'form-content-full-width preview-gradient to-inline-style',
 				),
 
 				array(
@@ -5145,13 +5265,6 @@ if( ! function_exists( 'mfn_opts_setup' ) )
 			'fields'	=> array(
 
 				array(
-					'id' => 'info-force-regenerate',
-					'type' => 'info',
-					'condition' => array( 'id' => 'fake-sale-addon', 'opt' => 'isnt', 'val' => '1' ),
-					'title' => __('Currently no add-on is active. To see the styles, please enable any add-on.', 'mfn-opts'),
-				),
-
-				array(
 					'title' => __('Fake sale notification', 'mfn-opts'),
 					'condition' => array( 'id' => 'fake-sale-addon', 'opt' => 'is', 'val' => '1' ),
 					'type' => 'header',
@@ -5228,14 +5341,188 @@ if( ! function_exists( 'mfn_opts_setup' ) )
 					'condition' => array( 'id' => 'free-delivery-addon', 'opt' => 'is', 'val' => '1' ),
 				),
 
+				array(
+					'title' => __('Side cart', 'mfn-opts'),
+					'condition' => array( 'id' => 'shop-sidecart', 'opt' => 'is', 'val' => '1' ),
+					'join' => true,
+					'type' => 'header',
+				),
+
+				array(
+					'id' => 'sidecart-background',
+					'type' => 'color',
+					'alpha' => true,
+					'title' => __('Background color', 'mfn-opts'),
+					'condition' => array( 'id' => 'shop-sidecart', 'opt' => 'is', 'val' => '1' ),
+				),
+
+				array(
+					'id' => 'sidecart-heading',
+					'type' => 'color',
+					'alpha' => true,
+					'title' => __('Heading color', 'mfn-opts'),
+					'condition' => array( 'id' => 'shop-sidecart', 'opt' => 'is', 'val' => '1' ),
+				),
+
+				array(
+					'id' => 'sidecart-color',
+					'type' => 'color',
+					'alpha' => true,
+					'title' => __('Text color', 'mfn-opts'),
+					'condition' => array( 'id' => 'shop-sidecart', 'opt' => 'is', 'val' => '1' ),
+				),
+
+				array(
+					'id' => 'sidecart-close-color',
+					'type' => 'color_multi',
+					'alpha' => true,
+					'title' => __('Close icon color', 'mfn-opts'),
+					'condition' => array( 'id' => 'shop-sidecart', 'opt' => 'is', 'val' => '1' ),
+					'class' => 'form-content-full-width',
+				),
+
+				array(
+					'id' => 'sidecart-border-color',
+					'type' => 'color',
+					'alpha' => true,
+					'title' => __('Border color', 'mfn-opts'),
+					'condition' => array( 'id' => 'shop-sidecart', 'opt' => 'is', 'val' => '1' ),
+				),
+
+				array(
+					'id' => 'sidecart-product-group',
+					'type' => 'group',
+					'title' => __('', 'mfn-opts'),
+					'desc' => __('Product container', 'mfn-opts'),
+					'condition' => array( 'id' => 'shop-sidecart', 'opt' => 'is', 'val' => '1' ),
+				),
+
+				array(
+					'id' => 'sidecart-product-background',
+					'type' => 'color',
+					'alpha' => true,
+					'title' => __('Product container background', 'mfn-opts'),
+					'condition' => array( 'id' => 'shop-sidecart', 'opt' => 'is', 'val' => '1' ),
+				),
+
+				array(
+					'id' => 'sidecart-product-title-color',
+					'type' => 'color_multi',
+					'alpha' => true,
+					'title' => __('Product title color', 'mfn-opts'),
+					'condition' => array( 'id' => 'shop-sidecart', 'opt' => 'is', 'val' => '1' ),
+					'class' => 'form-content-full-width',
+				),
+
+				array(
+					'id' => 'sidecart-product-color',
+					'type' => 'color',
+					'alpha' => true,
+					'title' => __('Product text color', 'mfn-opts'),
+					'condition' => array( 'id' => 'shop-sidecart', 'opt' => 'is', 'val' => '1' ),
+				),
+
+				array(
+					'id' => 'sidecart-product-price-color',
+					'type' => 'color',
+					'alpha' => true,
+					'title' => __('Product price color', 'mfn-opts'),
+					'condition' => array( 'id' => 'shop-sidecart', 'opt' => 'is', 'val' => '1' ),
+				),
+
+				array(
+					'id' => 'sidecart-product-quantity-background',
+					'type' => 'color',
+					'alpha' => true,
+					'title' => __('Product quantity background', 'mfn-opts'),
+					'condition' => array( 'id' => 'shop-sidecart', 'opt' => 'is', 'val' => '1' ),
+				),
+
+				array(
+					'id' => 'sidecart-product-quantity-color',
+					'type' => 'color',
+					'alpha' => true,
+					'title' => __('Product quantity text color', 'mfn-opts'),
+					'condition' => array( 'id' => 'shop-sidecart', 'opt' => 'is', 'val' => '1' ),
+				),
+
+				array(
+					'id' => 'sidecart-footer-group',
+					'type' => 'group',
+					'title' => __('', 'mfn-opts'),
+					'desc' => __('Footer', 'mfn-opts'),
+					'condition' => array( 'id' => 'shop-sidecart', 'opt' => 'is', 'val' => '1' ),
+				),
+
+				array(
+					'id' => 'sidecart-footer-background',
+					'type' => 'color',
+					'alpha' => true,
+					'title' => __('Footer background', 'mfn-opts'),
+					'condition' => array( 'id' => 'shop-sidecart', 'opt' => 'is', 'val' => '1' ),
+				),
+
+				array(
+					'id' => 'sidecart-footer-color',
+					'type' => 'color',
+					'alpha' => true,
+					'title' => __('Footer text color', 'mfn-opts'),
+					'condition' => array( 'id' => 'shop-sidecart', 'opt' => 'is', 'val' => '1' ),
+				),
+
+				array(
+					'id' => 'sidecart-footer-code-background',
+					'type' => 'color',
+					'alpha' => true,
+					'title' => __('Coupon code background', 'mfn-opts'),
+					'condition' => array( 'id' => 'shop-sidecart', 'opt' => 'is', 'val' => '1' ),
+				),
+
+				array(
+					'id' => 'sidecart-footer-code-color',
+					'type' => 'color',
+					'alpha' => true,
+					'title' => __('Coupon code text color', 'mfn-opts'),
+					'condition' => array( 'id' => 'shop-sidecart', 'opt' => 'is', 'val' => '1' ),
+				),
+
+				array(
+					'id' => 'sidecart-buttons-group',
+					'type' => 'group',
+					'title' => __('', 'mfn-opts'),
+					'desc' => __('Buttons', 'mfn-opts'),
+					'condition' => array( 'id' => 'shop-sidecart', 'opt' => 'is', 'val' => '1' ),
+				),
+
+				array(
+					'id' => 'sidecart-button-background',
+					'type' => 'color_multi',
+					'alpha' => true,
+					'title' => __('Checkout button background', 'mfn-opts'),
+					'condition' => array( 'id' => 'shop-sidecart', 'opt' => 'is', 'val' => '1' ),
+					'class' => 'form-content-full-width',
+				),
+
+				array(
+					'id' => 'sidecart-button-color',
+					'type' => 'color_multi',
+					'alpha' => true,
+					'title' => __('Checkout button text color', 'mfn-opts'),
+					'condition' => array( 'id' => 'shop-sidecart', 'opt' => 'is', 'val' => '1' ),
+					'class' => 'form-content-full-width',
+				),
+
+				array(
+					'id' => 'sidecart-cart-color',
+					'type' => 'color_multi',
+					'alpha' => true,
+					'title' => __('Cart link color', 'mfn-opts'),
+					'condition' => array( 'id' => 'shop-sidecart', 'opt' => 'is', 'val' => '1' ),
+					'class' => 'form-content-full-width',
+				),
+
 			)
 		);
-
-
-
-
-
-
 
 		// pages | general -----
 
@@ -10927,6 +11214,32 @@ if( ! function_exists( 'mfn_opts_setup' ) )
 					'std' => '',
 				),
 
+				array(
+					'id' => 'images-optimization',
+					'attr_id' => 'images-optimization',
+					'type' => 'switch',
+					'title' => __('Images optimization', 'mfn-opts'),
+					'desc' => __('Converts images (.jpeg, .png) to the modern WebP format when they are uploaded to the Media Library.<br />Requires server extansions: imagick or gd.', 'mfn-opts'),
+					'options' => array(
+						'' => __('Disable', 'mfn-opts'),
+						'1' => __('Enable', 'mfn-opts'),
+					),
+					'std' => '',
+				),
+
+				array(
+					'id' => 'images-optimization-remove',
+					'type' => 'switch',
+					'title' => __('Images optimization - Oryginal image', 'mfn-opts'),
+					'desc' => __('If this option is set to remove, after converting the image to WebP, the original uploaded file (.jpeg, .png) is removed from the server.', 'mfn-opts'),
+					'condition' => array( 'id' => 'images-optimization', 'opt' => 'isnt', 'val' => '' ),
+					'options' => array(
+						'' => __('Keep', 'mfn-opts'),
+						'1' => __('Remove', 'mfn-opts'),
+					),
+					'std' => '',
+				),
+
 				// assets
 
 				array(
@@ -10942,6 +11255,7 @@ if( ! function_exists( 'mfn_opts_setup' ) )
 					'options' => array(
 						'entrance-animations' => __('Entrance animations', 'mfn-opts'),
 						'font-awesome' => __('Font Awesome', 'mfn-opts'),
+						'parallax' => __('Parallax backgrounds', 'mfn-opts'),
 					),
 					'invert' => true, // !!!
 				),

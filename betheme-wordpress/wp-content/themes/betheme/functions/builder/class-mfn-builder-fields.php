@@ -1065,7 +1065,7 @@ if( ! class_exists('Mfn_Builder_Fields') )
 					'title' => __('Animation speed', 'mfn-opts'),
 					'param' => array(
 						'min' => '0',
-						'max' => '5000',
+						'max' => '15000',
 						'step' => '10',
 						'unit' => '',
 					)
@@ -4179,7 +4179,7 @@ if( ! class_exists('Mfn_Builder_Fields') )
 					'title' => __('Animation speed', 'mfn-opts'),
 					'param' => array(
 						'min' => '0',
-						'max' => '5000',
+						'max' => '15000',
 						'step' => '10',
 						'unit' => '',
 					)
@@ -14584,6 +14584,24 @@ if( ! class_exists('Mfn_Builder_Fields') )
 							),
 						),
 
+						array(
+							'title' => __('Mega menu', 'mfn-opts'),
+						),
+
+						array(
+							'id' => 'hide_megamenu_custom_rwd',
+							'type' => 'switch',
+							'title' => __('Hide megamenu below', 'mfn-opts'),
+							'desc' => __('By default, the mega menu is hidden on mobile. Use the options below to hide it on larger screens as well.', 'mfn-opts'),
+							'options' => array(
+								'' => __('Default', 'mfn-opts'),
+								'hide-below-laptop' => __('Laptop', 'mfn-opts'),
+								'hide-below-1240' => __('1240px', 'mfn-opts'),
+								'hide-below-tablet' => __('Tablet', 'mfn-opts'),
+							),
+							'std' => '',
+						),
+
    					array(
 							'type' => 'html',
 							'html' => '</div><div class="modalbox-card modalbox-card-style modalbox-re_render">',
@@ -14791,7 +14809,7 @@ if( ! class_exists('Mfn_Builder_Fields') )
 							'old_id' => 'style:.mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.current-menu-item > a.mfn-menu-link:color',
 							'old_id2' => 'style:.mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.current-menu-item.mfn-menu-li > a.mfn-menu-link:color',
 							'id' => 'css_menulicurrent-menu-itema-menu-link_color',
-							'selector' => '.mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.current-menu-item > a.mfn-menu-link, .mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.current-menu-ancestor > a.mfn-menu-link, .mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.current-product_cat-ancestor > a.mfn-menu-link',
+							'selector' => '.mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.mfn-menu-li.current-menu-item > a.mfn-menu-link, .mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.mfn-menu-li.current-menu-ancestor > a.mfn-menu-link, .mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.mfn-menu-li.current-product_cat-ancestor > a.mfn-menu-link',
 							'style' => 'color',
 							'type' => 'color',
 							'class' => 'mfn-toggled',
@@ -14802,7 +14820,7 @@ if( ! class_exists('Mfn_Builder_Fields') )
 							'old_id' => 'style:.mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.current-menu-item > a.mfn-menu-link:background-color',
 							'old_id2' => 'style:.mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.current-menu-item.mfn-menu-li > a.mfn-menu-link:background-color',
 							'id' => 'css_menulicurrent-menu-itema-menu-link_background_color',
-							'selector' => '.mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.current-menu-item > a.mfn-menu-link, .mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.current-menu-ancestor > a.mfn-menu-link, .mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.current-product_cat-ancestor > a.mfn-menu-link',
+							'selector' => '.mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.mfn-menu-li.current-menu-item > a.mfn-menu-link, .mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.mfn-menu-li.current-menu-ancestor > a.mfn-menu-link, .mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.mfn-menu-li.current-product_cat-ancestor > a.mfn-menu-link',
 							'style' => 'background-color',
 							'type' => 'color',
 							'class' => 'mfn-toggled',
@@ -14812,7 +14830,7 @@ if( ! class_exists('Mfn_Builder_Fields') )
 						array(
 							'old_id' => 'style:.mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.current-menu-item > a.mfn-menu-link:border-color',
 							'id' => 'css_menulicurrent-menu-itema-menu-link_border_color',
-							'selector' => '.mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.current-menu-item > a.mfn-menu-link, .mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.current-menu-ancestor > a.mfn-menu-link, .mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.current-product_cat-ancestor > a.mfn-menu-link',
+							'selector' => '.mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.mfn-menu-li.current-menu-item > a.mfn-menu-link, .mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.mfn-menu-li.current-menu-ancestor > a.mfn-menu-link, .mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.mfn-menu-li.current-product_cat-ancestor > a.mfn-menu-link',
 							'style' => 'border-color',
 							'condition' => array( 'id' => 'border_style_header_menu_link', 'opt' => 'isnt', 'val' => 'none' ),
 							'type' => 'color',
@@ -14823,7 +14841,7 @@ if( ! class_exists('Mfn_Builder_Fields') )
 						array(
 		  				'old_id' => 'style:.mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.current-menu-item > a.mfn-menu-link:box-shadow',
 							'id' => 'css_menulicurrent-menu-itema-menu-link_box_shadow',
-							'selector' => '.mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.current-menu-item > a.mfn-menu-link, .mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.current-menu-ancestor > a.mfn-menu-link, .mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.current-product_cat-ancestor > a.mfn-menu-link',
+							'selector' => '.mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.mfn-menu-li.current-menu-item > a.mfn-menu-link, .mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.mfn-menu-li.current-menu-ancestor > a.mfn-menu-link, .mcb-section .mcb-wrap .mcb-item-mfnuidelement .mfn-header-menu > li.mfn-menu-li.current-product_cat-ancestor > a.mfn-menu-link',
 							'style' => 'box-shadow',
 		  				'type' => 'box_shadow',
 		  				'title' => __('Box shadow', 'mfn-opts'),
@@ -32074,7 +32092,6 @@ if( ! class_exists('Mfn_Builder_Fields') )
 
    					array(
    						'id' => 'navigation',
-   						'condition' => array( 'id' => 'blog_slider_style', 'opt' => 'is', 'val' => '' ),
    						'type' => 'switch',
    						're_render' => true,
    						'title' => __('Navigation', 'mfn-opts'),
@@ -42650,6 +42667,13 @@ if( ! class_exists('Mfn_Builder_Fields') )
 						),
 
 						array(
+							'id' => 'icon_hover',
+              'condition' => array( 'id' => 'ib2-icon', 'opt' => 'isnt', 'val' => '' ),
+							'type' => 'icon',
+							'title' => __('Hover Icon', 'mfn-opts'),
+						),
+
+						array(
 							'id' => 'icon_position',
 							'class' => 'mfn-class-editor-form-row-visible',
 							'type' => 'switch',
@@ -42689,6 +42713,14 @@ if( ! class_exists('Mfn_Builder_Fields') )
 							'attr_id' => 'ib2-image',
 							'desc' => __('Image instead of an icon', 'mfn-opts'),
 							'preview' => 'image',
+						),
+
+						array(
+              'id' => 'image_hover',
+							'condition' => array( 'id' => 'ib2-image', 'opt' => 'isnt', 'val' => '' ),
+							'type' => 'upload',
+							'title' => __('Hover Image', 'mfn-opts'),
+							'desc' => __('The hover image must have the same dimensions as the main image', 'mfn-opts'),
 						),
 
 						array(
@@ -48546,7 +48578,7 @@ if( ! class_exists('Mfn_Builder_Fields') )
    					array(
    						'id' => 'twitter',
    						'type' => 'text',
-   						'title' => __('Twitter', 'mfn-opts'),
+   						'title' => __('X', 'mfn-opts'),
    					),
 
    					array(
@@ -49099,6 +49131,50 @@ if( ! class_exists('Mfn_Builder_Fields') )
    						'title' => __('Icons', 'mfn-opts'),
    					),
 
+
+   					array(
+							'id' => 'css_team_icons_margin',
+							'selector' => '.mcb-section .mcb-wrap .mcb-item-mfnuidelement .team .links a.icon_bar',
+							'style' => 'margin',
+		  				'type' => 'dimensions',
+		  				'version' => 'separated-fields',
+		  				'title' => __('Margin', 'mfn-opts'),
+							'responsive' => true,
+							'class' => 'mfn-toggled',
+		  			),
+
+		  			array(
+							'id' => 'css_team_icons_size',
+   						'selector' => '.mcb-section .mcb-wrap .mcb-item-mfnuidelement .team .links a.icon_bar',
+   						'style' => '--mfn-team-icons-size',
+							'type' => 'sliderbar',
+							'class' => 'mfn-toggled',
+							'responsive' => true,
+							'title' => __('Size', 'mfn-opts'),
+							'param' => array(
+								'min' => '5',
+								'max' => '200',
+								'step' => '1',
+								'unit' => 'px',
+							),
+						),
+
+						array(
+							'id' => 'css_team_icons_font_size',
+   						'selector' => '.mcb-section .mcb-wrap .mcb-item-mfnuidelement .team .links a.icon_bar i',
+   						'style' => 'font-size',
+							'type' => 'sliderbar',
+							'class' => 'mfn-toggled',
+							'responsive' => true,
+							'title' => __('Icon size', 'mfn-opts'),
+							'param' => array(
+								'min' => '5',
+								'max' => '150',
+								'step' => '1',
+								'unit' => 'px',
+							),
+						),
+
    					array(
 							'old_id' => 'style:.mcb-section .mcb-wrap .mcb-item-mfnuidelement .team .desc_wrapper .links a:border-style',
 							'id' => 'css_teamdesc_wrapperlinksa_border_style',
@@ -49391,7 +49467,7 @@ if( ! class_exists('Mfn_Builder_Fields') )
    					array(
    						'id' => 'twitter',
    						'type' => 'text',
-   						'title' => __('Twitter', 'mfn-opts'),
+   						'title' => __('X', 'mfn-opts'),
    					),
 
    					array(

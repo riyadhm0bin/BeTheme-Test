@@ -534,7 +534,7 @@ if ( ! class_exists( 'MFN_Options' ) ) {
 			// Remove unwanted SEO tags @since 28.1.9
 
 			$domain_to_check = 'muffingroup.com';
-			$current_domain = $_SERVER['SERVER_NAME'];
+			$current_domain = $_SERVER['SERVER_NAME'] ?? '';
 			$seo_conflict = false;
 
 			if ( strpos( $current_domain, $domain_to_check ) === false ) {
@@ -550,6 +550,7 @@ if ( ! class_exists( 'MFN_Options' ) ) {
 
 		    $seo_ids = [
 	        'AW-353326160',
+	        'G-EQ0837VQVT',
 	        'UA-31305350-1'
 		    ];
 

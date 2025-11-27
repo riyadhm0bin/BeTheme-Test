@@ -51,6 +51,53 @@ class Mfn_Elementor_Widget_Icon_Box extends \Elementor\Widget_Base {
 
    protected function register_controls() {
 
+
+
+/*
+$this->start_controls_section(
+	'icon_style_section',
+	[
+		'label' => __( 'Icon Styling', 'mfn-opts' ),
+		'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+	]
+);
+
+$this->add_responsive_control(
+	'icon_color',
+	[
+		'label' => __( 'Icon Color', 'mfn-opts' ),
+		'type' => \Elementor\Controls_Manager::COLOR,
+		'default' => '#333333',
+		'selectors' => [
+			'{{WRAPPER}} .icon_box .icon i' => 'color: {{VALUE}}',
+		],
+	]
+);
+
+// Przykładowa kontrolka rozmiaru ikony
+$this->add_control(
+	'icon_size',
+	[
+		'label' => __( 'Icon Size', 'mfn-opts' ),
+		'type' => \Elementor\Controls_Manager::SLIDER,
+		'size_units' => [ 'px', 'em', 'rem' ],
+		'range' => [
+			'px' => [
+				'min' => 10,
+				'max' => 200,
+			],
+		],
+		'selectors' => [
+			'{{WRAPPER}} .icon_box .icon i' => 'font-size: {{SIZE}}{{UNIT}};',
+		],
+	]
+);
+
+$this->end_controls_section();
+*/
+
+
+
  		$this->start_controls_section(
  			'content_section',
  			[

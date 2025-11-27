@@ -219,6 +219,44 @@
     }
 
     /**
+     * Gradient
+     */
+
+    function gradient( el, val ){
+
+      var id = el.closest('.mfn-form-row').attr('id');
+
+      // console.log([id, val]);
+
+      $head.find('#mfn-'+ id).remove();
+
+      if( val ){
+        $head.append('<style id="mfn-'+ id +'">.mfn-ui{--mfn-'+ id +':'+ val +'}</style>');
+      }
+
+    }
+
+    /**
+     * Type
+     */
+
+    function type( el, val ){
+
+      var id = el.closest('.mfn-form-row').attr('id');
+
+      id = id.replace('-background-type','-gradient');
+
+      $head.find('#mfn-'+ id +'-type').remove();
+      $head.find('#mfn-'+ id +'-hover-type').remove();
+
+      if( ! val ) {
+        $head.append('<style id="mfn-'+ id +'-type">.mfn-ui{--mfn-'+ id +':unset}</style>');
+        $head.append('<style id="mfn-'+ id +'-hover-type">.mfn-ui{--mfn-'+ id +'-hover:unset}</style>');
+      }
+
+    }
+
+    /**
      * Box shadow
      */
 
@@ -281,6 +319,17 @@
         color( $(this), $(this).val() );
       });
 
+      $('.preview-gradient .gradient-hidden').on('change', function() {
+        gradient( $(this), $(this).val() );
+      });
+
+      $('.preview-type input').on('change', function() {
+        if( $(this).prop('checked') ){
+          type( $(this), $(this).val() );
+        }
+
+      });
+
       $('.preview-box-shadow .mfn-field-value').on('change', function(e, value) {
         boxShadow( $(this), $(this).val() );
       });
@@ -306,6 +355,8 @@
       $('.preview-animation-time input').trigger('change');
       $('.preview-gap input').trigger('change');
       $('.preview-color input.mfn-form-input').trigger('change');
+      $('.preview-gradient input.gradient-hidden').trigger('change');
+      $('.preview-type input').trigger('change');
 
     }
 

@@ -35,6 +35,15 @@ class MFN_Options_color_multi extends Mfn_Options_field
 			$alpha = false;
 		}
 
+		// std
+
+		if( empty( $this->field['std'] ) ){
+			$this->field['std'] = [
+				'normal' => '',
+				'hover' => ''
+			];
+		}
+
 		$classes = 'color-picker-vb';
 
 		if( isset($this->field['old_picker']) && $this->field['old_picker'] ){

@@ -648,6 +648,7 @@ a.button.mfn-dynamic-data-add-to-cart.added:after{font-family: WooCommerce; cont
 .mfn-cart-holder .mfn-ch-content .mfn-ch-product .mfn-chp-info dl.variation dd p { margin: 0; }
 .mfn-cart-holder .mfn-ch-content .mfn-ch-product .mfn-chp-price { flex-shrink: 0; margin-left: auto; margin-left: 15px; }
 .mfn-cart-holder .mfn-ch-content .mfn-ch-product .mfn-chp-price .woocommerce-Price-amount { font-weight: 700; }
+.mfn-cart-holder .mfn-ch-content .mfn-ch-product .mfn-chp-price > span{display:block}
 .mfn-cart-holder .mfn-ch-content .mfn-ch-product .mfn-chp-footer { display: flex; align-items: center; width: calc(100% + 30px); margin: 15px -15px -15px; background-color: rgba(0,0,0,.01); border-top: 1px solid rgba(0,0,0,.04); }
 .mfn-cart-holder .mfn-ch-content .mfn-ch-product .mfn-chp-footer .mfn-chpf-col { width: 50%; text-align: center; padding: 7px 15px; }
 .mfn-cart-holder .mfn-ch-content .mfn-ch-product .mfn-chp-footer .mfn-chpf-col .quantity { width: 120px; display: inline-block; }

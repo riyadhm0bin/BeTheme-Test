@@ -3805,7 +3805,7 @@ if( ! class_exists( 'Mfn_Builder_Admin' ) )
 			}
 
 
-			if( defined( 'ICL_SITEPRESS_VERSION' ) && is_array($all_langs) && is_iterable($all_langs) ){
+			if( defined( 'ICL_SITEPRESS_VERSION' ) && !empty($all_langs) && is_array($all_langs) && is_iterable($all_langs) ){
 				// with WPML
 				foreach($all_langs as $a=>$al){
 					if( $a == $default_lang ){

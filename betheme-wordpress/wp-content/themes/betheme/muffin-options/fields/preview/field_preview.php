@@ -36,24 +36,7 @@ class MFN_Options_preview extends Mfn_Options_field
 			echo '<div class="item" data-key="Action">';
 				echo '<a href="#" class="button-preview action">Button text</a>';
 			echo '</div>';
-
-
-/*
-			echo '<div class="item" data-key="Default">';
-				echo '<div class="inner">';
-					echo '<a class="mfn-button default normal" href="#">Button text</a>';
-					echo '<a class="mfn-button default hover" href="#">Button text</a>';
-				echo '</div>';
-			echo '</div>';
-
-			echo '<div class="item" data-key="Highlighted">';
-				echo '<div class="inner">';
-					echo '<a class="mfn-button highlighted normal" href="#">Button text</a>';
-					echo '<a class="mfn-button highlighted hover" href="#">Button text</a>';
-				echo '</div>';
-			echo '</div>';
-*/
-
+			
     echo '</div>';
 
 		$this->enqueue();

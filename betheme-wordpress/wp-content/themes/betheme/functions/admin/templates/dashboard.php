@@ -242,7 +242,6 @@
 					</div>
 				</div>
 
-				<?php if(0): ?>
 	      <div class="mfn-row">
 	        <div class="row-column row-column-12">
 	          <div class="mfn-card mfn-shadow-1" data-card="customization">
@@ -279,14 +278,13 @@
                       <span class="pill-text">Direct contact</span>
                     </span>
                   </div>
-                  <a class="mfn-btn mfn-btn-blue">Get a Quote</a>
+                  <a class="mfn-btn mfn-btn-blue" href="https://muffingroup.com/betheme/customization/" target="_blank">Get a Quote</a>
                 </div>
                 <img class="be-customization" src="<?php echo get_theme_file_uri('/functions/admin/assets/images/becustomization.png'); ?>" alt="" />
 	            </div>
 	          </div>
 	        </div>
         </div>
-			<?php endif; ?>
 
 	      <div class="mfn-row">
 	        <div class="row-column row-column-12">
