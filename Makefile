@@ -167,3 +167,10 @@ gitignore:
 	@echo '*.wpress' >> $(GIT_IGNORE)
 	@echo '.idea/' >> $(GIT_IGNORE)
 	@echo "✅ .gitignore created successfully!"
+
+rush:
+	@make dbbackup
+	@make clean
+	@git add .
+	@git commit -m "rush commit with database backup"
+	@git push
